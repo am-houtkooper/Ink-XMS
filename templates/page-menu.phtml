@@ -1,0 +1,18 @@
+<?php foreach($menu as $title => $link): ?>
+<div style="float:left">
+	<?php
+	$style = ' style="opacity: 0.5"';
+
+	if (InkXMS_Page::$title != $title):
+		$style = '';
+	?>
+	<a href="<?= $link ?>" title="<?= $title ?>">
+	<?php endif; ?>
+		<div<?= $style ?> class="item-left"></div>
+		<div<?= $style ?> class="item"><?= $title ?></div>
+		<div<?= $style ?> class="item-right"></div>
+	<?php if (InkXMS_Page::$title != $title): ?>
+	</a>
+	<?php endif; ?>
+</div>
+<?php endforeach; ?>

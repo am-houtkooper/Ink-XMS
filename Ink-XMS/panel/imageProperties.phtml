@@ -1,0 +1,69 @@
+<script language="JavaScript">
+if(top.opener == null) {
+	alert(top.opener+" is null!");
+	//window.close();
+}
+else {
+	//alert("Whoot! we can stay!");
+}
+</script>
+<div id="panelConsole"></div>
+<form accept-charset="UTF-8" action="" enctype="multipart/form-data" method="post" name="panel" target="RPC">
+	<table width="100%">
+		<tr>
+			<td class="box" style="vertical-align:middle; width:50px;">Foto</td>
+			<td class="box">
+				<input type="text" name="Image" size="20" value="..." /><br />
+			</td>
+			<td class="box" width="110">
+				<input class="button" name="TCI" onclick="javascript:toggleChooseImage(this);" type="button" value="Annuleer" /><br />
+			</td>
+		</tr>
+		<tr id="fotoList">
+			<td class="subbox" colspan="3" style="white-space:nowrap;">
+				<span class="small">upload nieuwe foto:</span><br />
+				<input name="newImage" type="file" />
+				<input class="button" name="imageUpload" onclick="javascript:remoteImageUploadQuery(this, 'newImage'); return false;" type="button" value="Upload" /><br />
+				<select name="imageChoice" size="13" style="width: 316px;">
+				<?php foreach(getFotoList() as $id => $name):?>
+					<option value="<?= $id ?>"><?= $name ?></option>
+				<?php endforeach; ?>
+				</select><br />
+				<center>
+					<input class="submit" onclick="javascript:chooseImage();" type="button" value="Kies" />
+					<input class="button" name="imageRemove" onclick="javascript:remoteImageRemoveQuery(this, 'imageChoice'); return false;" type="button" value="Verwijder" />
+				</center>
+			</td>
+		</tr>
+		<tr>
+			<td class="box" style="vertical-align:middle;">Link</td>
+			<td class="box" colspan="2">
+				<input name="Link" style="width: 276px;" type="text" value="..." /><br />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" style="text-align:center;">
+				<input class="submit" onclick="javscript:submitImageProperties();" type="button" value="Verander" />
+				<input class="button" onclick="javscript:window.close();" type="button" value="Annuleer" />
+			</td>
+		</tr>
+	</table>
+</form>
+<script language="JavaScript">
+initImageProperties();
+</script>
+
+<?php
+function getFotoList() {
+	$r = array();
+	$reply = InkXMS_Database::query(
+		'SELECT `id`, `name` FROM `' . InkXMS_Config::$space . '_photo` ORDER BY `name` ASC'
+	);
+
+	while($item = mysql_fetch_array($reply, MYSQL_ASSOC)) {
+		$r[$item['id']] = $item['name'];
+	}
+
+	return $r;
+}
+?>

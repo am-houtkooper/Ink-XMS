@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='en' xml:lang='en' xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Ink-XMS demo website - <?= $title ?></title>
+		<meta name="developer" content="Roughdot.nl - Webdesign & Development" />
+		<meta name="keywords" content="xms, cms, ink, webdesign, content, search optimization, google, professional, reliable, secure, simple, reliable" />
+		<script language="JavaScript" src="inc/scripts.js"></script>
+		<link href="inc/styles.css" rel="stylesheet" type="text/css" />
+		<?= (InkXMS_Page::$inEditMode ? '<script language="JavaScript" src="Ink-XMS/includes/xms.js"></script>' . "\n\t\t" . '<link href="Ink-XMS/includes/xms.css" rel="stylesheet" type="text/css" />' : '') ?>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<div id="site_name">Ink-XMS Demo</div>
+				<div id="menu"><?= $languageMenu.$siteMenu ?></div>
+			</div>
+			<div id="content"><?= $content ?></div>
+			<div id="footer">
+				<div class="credits">&copy; 2010-<?= date('Y'); ?> A.M. Houtkooper</div>
+				<a href="http://www.roughdot.nl" target="_blank" title="Roughdot Websolutions">
+					<span class="developer">
+						Webdesign<img alt="by" border="0" height="22" src="img/R.gif" style="vertical-align:middle;" width="22" />Roughdot.nl
+					</span>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>

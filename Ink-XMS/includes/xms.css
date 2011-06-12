@@ -1,0 +1,76 @@
+html, body { 
+	height: 100%;
+	min-height: 100%;
+	width: 100%;
+}
+body {
+	font-family: sans-serif;
+	font-size: 1em;
+	padding: 0px;
+	margin: 0px; 
+	border: 0px;
+}
+div#panelConsole {
+	background-color: #FDDF65;
+	height: 24px;
+}
+div#console {
+	background-color: #FDDF65;
+	color: #000000;
+	margin: 5px 0px;
+	padding: 5px;
+	text-align: left;
+}
+form {
+	margin: 0px;
+	padding: 0px;
+}
+img {
+	border: 0px;
+}
+input[type="text"], input[type="password"], input[type="file"], select, textarea {
+	background-color: #FD7865;
+	border: #000 1px solid;
+	font-family: sans-serif;
+	margin: 0;
+}
+input.button {
+	margin: 0;
+}
+input[type="submit"] {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 0;
+}
+span.small {
+	font-size: 0.8em;
+}
+table, th, td {
+	border-width: 0px;
+	padding: 0px;
+	margin: 0px;
+	vertical-align: top;
+}
+td {
+	text-align: left;
+	vertical-align: top;
+}
+td.block {
+	background-color: #FD7865;
+	padding: 2px;
+	text-align: center;
+}
+td.block, td.box-content, td.box-header {
+	padding: 4px;
+	text-align: center;
+}
+td.subbox {
+	background-color: #FFA488;
+	padding: 5px;
+}
+td.subbox input[type="text"], td.subbox input[type="file"], td.subbox select, td.subbox textarea {
+	background-color: #FFA488;
+}
+td.subbox select {
+	border: gray 1px inset;
+}

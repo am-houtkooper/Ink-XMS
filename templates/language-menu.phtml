@@ -1,0 +1,16 @@
+<?php foreach($menu as $language => $link): ?>
+<div class="language">
+	<?php
+	$style = ' style="opacity: 0.5"';
+
+	if (InkXMS_Page::$language != $language):
+		$style = '';
+	?>
+	<a href="<?= $link ?>" title="<?= $language ?>">
+	<?php endif; ?>
+		<img<?= $style ?> alt="<?= $language ?>" border="0" height="17" src="img/menu/<?= $language ?>.gif" width="28" />
+	<?php if (InkXMS_Page::$language != $language): ?>
+	</a>
+	<?php endif; ?>
+</div>
+<?php endforeach; ?>

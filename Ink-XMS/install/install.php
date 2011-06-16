@@ -168,7 +168,7 @@ class Installation {
 		}
 	}
 
-	private static function removeDir() {
+	public static function removeDir() {
 		echo 'Removing '.__DIR__.'...';
 		unlink(__DIR__);
 		echo ' <strong>DONE.</strong><br />';

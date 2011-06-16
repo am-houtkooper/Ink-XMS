@@ -275,7 +275,7 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 		require_once('XmlConversion.php');
 		$xmlContent = InkXMS_XmlConversion::getDocumentXml($tree);
 		$reply = InkXMS_Database::query(
-			'UPDATE `'.InkXMS_Config::$space.'_content` SET `content`=\''.InkXMS_Database::escape($xmlContent).'\', `updated`=NOW() WHERE `title`=\''.mysql_escape_string(InkXMS_Page::$title).'\' AND `language`=\''.InkXMS_Database::escape(InkXMS_Page::$language).'\''
+			'UPDATE `'.InkXMS_Config::$space.'_page` SET `content`=\''.InkXMS_Database::escape($xmlContent).'\', `updated`=NOW() WHERE `title`=\''.mysql_escape_string(InkXMS_Page::$title).'\' AND `language`=\''.InkXMS_Database::escape(InkXMS_Page::$language).'\''
 		);
 
 		return mysql_affected_rows() > 0 ? 'De veranderingen zijn succesvol gepubliceerd.' : 'Er is niets veranderd om op te slaan.';

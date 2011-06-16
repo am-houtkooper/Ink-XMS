@@ -16,7 +16,14 @@ class InkXMS_Database {
 	}
 
 	public static function query($q) {
-		$reply = mysql_query($q) or die("<pre><strong>no such luck:</strong>\n\t$q\n</pre>");
+		$reply = mysql_query($q, self::$_link)
+			or die(
+				"<pre><strong>no such luck:</strong>\n\t$q\n"
+				.mysql_errno(self::$_link)
+				."\n"
+				.mysql_error(self::$_link)
+				."\n</pre>"
+			);
 		return $reply;
 	}
 

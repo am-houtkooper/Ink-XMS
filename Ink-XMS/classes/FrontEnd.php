@@ -17,7 +17,7 @@ class InkXMS_FrontEnd {
 	}
 
 	protected static final function _getContent() {
-		$reply = InkXMS_Database::query("SELECT `content` FROM `" . InkXMS_Config::$space . "_content` WHERE `title`='".mysql_escape_string(InkXMS_Page::$title)."' AND `language`='".mysql_escape_string(InkXMS_Page::$language)."'");
+		$reply = InkXMS_Database::query("SELECT `content` FROM `" . InkXMS_Config::$space . "_page` WHERE `title`='".mysql_escape_string(InkXMS_Page::$title)."' AND `language`='".mysql_escape_string(InkXMS_Page::$language)."'");
 		$row = mysql_fetch_array($reply, MYSQL_ASSOC);
 		return isset($row['content']) ? $row['content'] : FALSE;
 	}

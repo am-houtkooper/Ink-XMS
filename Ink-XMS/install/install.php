@@ -26,7 +26,7 @@ class Installation {
 	private static $_configurationPath = '../../inc/cfg.php';
 
 	private static $_configFields = array(
-		'site_namespace', 'host', 'database', 'user', 'password'
+		'host', 'database', 'user', 'password', 'site_namespace'
 	);
 
 	private static function _isDeletable($path) {

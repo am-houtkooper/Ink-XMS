@@ -17,6 +17,7 @@ if(Installation::areFilesJustRight()) {
 	}
 	else {
 		Installation::store();
+		Installation::removeDir();
 	}
 }
 
@@ -156,6 +157,10 @@ class Installation {
 				)
 			);
 		}
+	}
+
+	private static function removeDir() {
+		unlink(__DIR__);
 	}
 
 	public static function store() {

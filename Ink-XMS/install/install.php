@@ -18,6 +18,7 @@ if(Installation::areFilesJustRight()) {
 	else {
 		Installation::store();
 		Installation::removeDir();
+		echo 'done. Enjoy your new website!';
 	}
 }
 
@@ -116,6 +117,7 @@ class Installation {
 	}
 
 	private static function _storeDatabaseConnection() {
+		echo 'Write site configuration...';
 		$placeholders = self::$_configFields;
 		array_walk(
 			$placeholders,
@@ -131,9 +133,11 @@ class Installation {
 				file_get_contents(self::$_configurationPath)
 			)
 		);
+		echo ' <strong>DONE.</strong><br />';
 	}
 
 	private static function _addAdminLogin() {
+		echo 'Write site admin login...';
 		InkXMS_Database::query(
 			'INSERT INTO `auth` (`name`, `pass`, `site`) VALUES ('
 			.'\'admin\','
@@ -141,14 +145,18 @@ class Installation {
 			.' \''.$_POST['site_namespace'].'\''
 			.')'
 		);
+		echo ' <strong>DONE.</strong><br />';
 	}
 
 	private static function _createTables() {
 		$placeholder = self::_generatePlaceholder('site_namespace');
 		$seedsPath = __DIR__.'/seeds';
+		echo 'Executing auth seed...';
 		InkXMS_Database::query(file_get_contents($seedsPath.'/auth.sql'));
+		echo ' <strong>DONE.</strong><br />';
 
 		foreach (array('page', 'page_rows', 'photo') as $seed) {
+			echo 'Executing '.$seed.' seed...';
 			InkXMS_Database::query(
 				str_replace(
 					$placeholder,
@@ -156,11 +164,14 @@ class Installation {
 					file_get_contents($seedsPath.'/'.$seed.'.sql')
 				)
 			);
+			echo ' <strong>DONE.</strong><br />';
 		}
 	}
 
 	private static function removeDir() {
+		echo 'Removing '.__DIR__.'...';
 		unlink(__DIR__);
+		echo ' <strong>DONE.</strong><br />';
 	}
 
 	public static function store() {

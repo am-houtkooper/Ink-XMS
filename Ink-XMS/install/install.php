@@ -17,8 +17,7 @@ if(Installation::areFilesJustRight()) {
 	}
 	else {
 		Installation::store();
-		Installation::removeDir();
-		echo 'done. Enjoy your new website!';
+		echo 'done. Enjoy your new website! Remove the '.__DIR__.' directory.';
 	}
 }
 
@@ -30,32 +29,6 @@ class Installation {
 	private static $_configFields = array(
 		'host', 'database', 'user', 'password', 'site_namespace'
 	);
-
-	private static function _isDeletable($path) {
-		if(!is_readable($path)) {
-			echo $path.' NOT READABLE';
-			return false;
-		}
-		else if(!is_writable($path)) {
-			echo $path.' NOT WRITABLE';
-			return false;
-		}
-		else if(is_dir($path)) {
-			$dh = opendir($path);
-
-			while(($file = readdir($dh)) !== false) {
-				if ('.' == $file || '..' == $file) {
-					continue;
-				}
-
-				if(!self::_isDeletable($path.'/'.$file)) {
-					return false;
-				}
-			}
-		}
-
-		return true;
-	}
 
 	public static function areFilesJustRight() {
 		echo 'checking '.realpath(__DIR__.'/'.self::$_configurationPath).' temperature.. <strong>';
@@ -74,19 +47,7 @@ class Installation {
 
 		echo '.</strong><br />';
 
-		echo 'checking '.__DIR__.' temperature.. <strong>';
-		$installationDeletable = self::_isDeletable(__DIR__);
-
-		if(!$installationDeletable) {
-			echo 'NOT DELETABLE.</strong> probable fix: chmod o+w -R '.__DIR__;
-		}
-		else {
-			echo 'OK.</strong>';
-		}
-
-		echo '<br />';
-
-		return $configExists && $configWritable && $installationDeletable;
+		return $configExists && $configWritable;
 	}
 
 	public static function isValidSubmit() {

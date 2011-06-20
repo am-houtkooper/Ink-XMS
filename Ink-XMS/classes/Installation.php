@@ -44,7 +44,7 @@ class Installation {
 	public static function isValidSubmit() {
 		$fields = self::$_configFields;
 		array_push($fields, 'adm_password1', 'adm_password2');
-		$r = false;
+		$r = FALSE;
 
 		if(
 			isset($_POST) && count(array_diff($fields, array_keys($_POST))) == 0
@@ -87,9 +87,9 @@ class Installation {
 		$configurationContent = file_get_contents(self::$_configurationPath);
 
 		foreach($placeholders as $placeholder) {
-			if(strpos($placeholder, $configurationContent) === FALSE) {
-
-				return false;
+			if(strpos($configurationContent, $placeholder) === FALSE) {
+				echo "<strong>FAILED: could not find $placeholder";
+				return FALSE;
 			}
 		}
 
@@ -98,12 +98,13 @@ class Installation {
 			str_replace(
 				$placeholders,
 				array_intersect_key(
-					$_POST, array_fill_keys(self::$_configFields, null)
+					$_POST, array_fill_keys(self::$_configFields, NULL)
 				),
 				$configurationContent
 			)
 		);
 		echo ' <strong>DONE.</strong><br />';
+		return FALSE;
 	}
 
 	private static function _addAdminLogin() {
@@ -145,10 +146,11 @@ class Installation {
 	}
 
 	public static function store() {
-		self::_storeDatabaseConnection();
-		require_once(self::$_configurationPath);
-		self::_createTables();
-		self::_addAdminLogin();
+		if(self::_storeDatabaseConnection()) {
+			require_once(self::$_configurationPath);
+			self::_createTables();
+			self::_addAdminLogin();
+		}
 	}
 
 	public static function form() {

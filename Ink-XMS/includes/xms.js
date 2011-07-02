@@ -63,7 +63,7 @@ function toggleChooseImage(input) {
 		// remove it
 		//chooseImagePane = input.parentNode.parentNode.parentNode.removeChild(input.parentNode.parentNode.nextSibling);
 		chooseImagePane.style.display = 'none';
-		input.value = 'Verander';
+		input.value = 'Change';
 	}
 	else {
 		// introduce it
@@ -81,7 +81,7 @@ function toggleChooseImage(input) {
 		}
 		
 		document.forms['panel'].imageChoice.selectedIndex = selIndex;
-		input.value = 'Annuleer';
+		input.value = 'Cancel';
 	}
 }
 
@@ -106,7 +106,7 @@ function remoteImageRemoveReply(
 	var console = document.getElementById('panelConsole');
 	console.innerHTML = message+'<br />';
 	var button = document.forms['panel'].elements[buttonName];
-	button.value = 'Verwijder';
+	button.value = 'Remove';
 	button.disabled = false;
 	var sel = document.forms['panel'].elements['imageChoice'];
 	sel.disabled = false;

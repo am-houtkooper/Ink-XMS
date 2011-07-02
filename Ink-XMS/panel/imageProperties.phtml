@@ -11,17 +11,17 @@ else {
 <form accept-charset="UTF-8" action="" enctype="multipart/form-data" method="post" name="panel" target="RPC">
 	<table width="100%">
 		<tr>
-			<td class="box" style="vertical-align:middle; width:50px;">Foto</td>
+			<td class="box" style="vertical-align:middle; width:50px;">Photo</td>
 			<td class="box">
 				<input type="text" name="Image" size="20" value="..." /><br />
 			</td>
 			<td class="box" width="110">
-				<input class="button" name="TCI" onclick="javascript:toggleChooseImage(this);" type="button" value="Annuleer" /><br />
+				<input class="button" name="TCI" onclick="javascript:toggleChooseImage(this);" type="button" value="Cancel" /><br />
 			</td>
 		</tr>
 		<tr id="fotoList">
 			<td class="subbox" colspan="3" style="white-space:nowrap;">
-				<span class="small">upload nieuwe foto:</span><br />
+				<span class="small">upload a new photo:</span><br />
 				<input name="newImage" type="file" />
 				<input class="button" name="imageUpload" onclick="javascript:remoteImageUploadQuery(this, 'newImage'); return false;" type="button" value="Upload" /><br />
 				<select name="imageChoice" size="13" style="width: 316px;">
@@ -30,8 +30,8 @@ else {
 				<?php endforeach; ?>
 				</select><br />
 				<center>
-					<input class="submit" onclick="javascript:chooseImage();" type="button" value="Kies" />
-					<input class="button" name="imageRemove" onclick="javascript:remoteImageRemoveQuery(this, 'imageChoice'); return false;" type="button" value="Verwijder" />
+					<input class="submit" onclick="javascript:chooseImage();" type="button" value="Choose" />
+					<input class="button" name="imageRemove" onclick="javascript:remoteImageRemoveQuery(this, 'imageChoice'); return false;" type="button" value="Remove" />
 				</center>
 			</td>
 		</tr>
@@ -43,8 +43,8 @@ else {
 		</tr>
 		<tr>
 			<td colspan="3" style="text-align:center;">
-				<input class="submit" onclick="javscript:submitImageProperties();" type="button" value="Verander" />
-				<input class="button" onclick="javscript:window.close();" type="button" value="Annuleer" />
+				<input class="submit" onclick="javscript:submitImageProperties();" type="button" value="Save" />
+				<input class="button" onclick="javscript:window.close();" type="button" value="Cancel" />
 			</td>
 		</tr>
 	</table>

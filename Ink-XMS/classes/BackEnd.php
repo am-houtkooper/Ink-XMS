@@ -30,8 +30,8 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 				.'<table class="backend" width="100%">'.parent::_displayTree($tree).'</table>'
 				.'<center>'
 				.'<input name="submitted" type="hidden" value="xmsServerAction" />'
-				.'<input class="submit" type="submit" value="Bewaar" />'
-				.'<input class="button" type="button" onclick="window.location.reload(true);" value="Annuleer" />'
+				.'<input class="submit" type="submit" value="Save" />'
+				.'<input class="button" type="button" onclick="window.location.reload(true);" value="Cancel" />'
 				.'</center>'
 				.'</form>';
 		}
@@ -47,7 +47,7 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 			);
 		return '<div id="console"><span style="font-size:16px; font-weight:bold; text-align:center;">Ink XMS 1.5.8.22</span><br />'
 			.(count(self::$_console) > 0 ? implode('<br />', self::$_console) : '')
-			.'<div style="text-align:right;"><a href="'.thisURL(array('delete' => 'edit')).'">' . $_SERVER['HTTP_HOST'] . '</a> | <a href="#" onclick="javascript:return showPanel(\''.$helpUrl.'\', 660, 720);">Help</a> | <a href="'.thisURL(array('amend' => array('logout' => ''))).'">Uitloggen</a></div>'
+			.'<div style="text-align:right;"><a href="'.thisURL(array('delete' => 'edit')).'">' . $_SERVER['HTTP_HOST'] . '</a> | <a href="#" onclick="javascript:return showPanel(\''.$helpUrl.'\', 660, 720);">Help</a> | <a href="'.thisURL(array('amend' => array('logout' => ''))).'">Log off</a></div>'
 			.'</div>';
 	}
 
@@ -156,7 +156,7 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 		);
 		return $r.'<tr><td colspan="'.$colspan.'">'
 			.'<div style="text-align:right;">'
-			.'<a href="#" onclick="javascript:addInputs(this,[\''.implode('\',\'', $newFields).'\']);">Foto toevoegen &gt;</a>'
+			.'<a href="#" onclick="javascript:addInputs(this,[\''.implode('\',\'', $newFields).'\']);">Add image &gt;</a>'
 			.'</div></td>';
 	}
 
@@ -190,7 +190,7 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 		$newFields = array(sprintf($namePattern, $paramNum, $count));
 		return $r.'</tr><tr><td colspan="'.$count.'">'
 			.'<div style="text-align:right;">'
-			.'<a href="#" onclick="javascript:addInputs(this,[\''.implode('\',\'', $newFields).'\']);">Paragraaf toevoegen &gt;</a>'
+			.'<a href="#" onclick="javascript:addInputs(this,[\''.implode('\',\'', $newFields).'\']);">Add text &gt;</a>'
 			.'</div></td>';
 	}
 
@@ -222,11 +222,11 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 			.'<td class="box-header" style="padding-bottom: 0; text-align: right;">'
 			.(
 				!is_null($propsUrl)
-				? '<a href="#" onclick="javascript:showPanel(\''.$propsUrl.'\', 330, 360); return false;" title="Eigenschappen">'
-				.'<img alt="Eigenschappen" src="Ink-XMS/img/o.gif" style="padding-left:2px;" /></a>'
+				? '<a href="#" onclick="javascript:showPanel(\''.$propsUrl.'\', 330, 360); return false;" title="Properties">'
+				.'<img alt="Properties" src="Ink-XMS/img/o.gif" style="padding-left:2px;" /></a>'
 				: ''
 			)
-			.'<a href="#" onclick="disableFields(this.parentNode.parentNode.parentNode, \''.implode('\',\'', $fields).'\'); return false;" title="Verwijder">'
+			.'<a href="#" onclick="disableFields(this.parentNode.parentNode.parentNode, \''.implode('\',\'', $fields).'\'); return false;" title="Remove">'
 			.'<img alt="Verwijder veld" src="Ink-XMS/img/x.gif" style="padding-left:2px;" /></a><br />'
 			.'</td></tr><tr><td class="box-content">'.$content.'</td></tr></table>';
 	}
@@ -262,7 +262,7 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 			}
 
 			if(!self::_isValidXml($inputValue)) {
-				return 'Geen valide HTML ingegeven in '.$inputName.' '.$inputValue.'. Wijzigingen niet opgeslagen.';
+				return 'Invalid HTML given in '.$inputName.' '.$inputValue.'. Changes not saved.';
 			}
 
 			eval(
@@ -278,6 +278,6 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 			'UPDATE `'.InkXMS_Config::$space.'_page` SET `content`=\''.InkXMS_Database::escape($xmlContent).'\', `updated`=NOW() WHERE `title`=\''.mysql_escape_string(InkXMS_Page::$title).'\' AND `language`=\''.InkXMS_Database::escape(InkXMS_Page::$language).'\''
 		);
 
-		return mysql_affected_rows() > 0 ? 'De veranderingen zijn succesvol gepubliceerd.' : 'Er is niets veranderd om op te slaan.';
+		return mysql_affected_rows() > 0 ? 'The changes have been published successfully.' : 'Nothing has been changed.';
 	}
 }

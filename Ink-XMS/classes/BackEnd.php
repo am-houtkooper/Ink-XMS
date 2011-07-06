@@ -38,16 +38,9 @@ class InkXMS_BackEnd extends InkXMS_FrontEnd {
 	}
 
 	private static function _displayConsole() {
-		$helpUrl = 'Ink-XMS/panel.php?'
-			. http_build_query(
-				array(
-					'id' => 'help.html',
-					'title' => 'Help',
-				)
-			);
 		return '<div id="console"><span style="font-size:16px; font-weight:bold; text-align:center;">Ink XMS 1.5.8.22</span><br />'
 			.(count(self::$_console) > 0 ? implode('<br />', self::$_console) : '')
-			.'<div style="text-align:right;"><a href="'.thisURL(array('delete' => 'edit')).'">' . $_SERVER['HTTP_HOST'] . '</a> | <a href="#" onclick="javascript:return showPanel(\''.$helpUrl.'\', 660, 720);">Help</a> | <a href="'.thisURL(array('amend' => array('logout' => ''))).'">Log off</a></div>'
+			.'<div style="text-align:right;"><a href="'.thisURL(array('delete' => 'edit')).'">' . $_SERVER['HTTP_HOST'] . '</a> | <a href="'.thisURL(array('amend' => array('logout' => ''))).'">Log off</a></div>'
 			.'</div>';
 	}
 
